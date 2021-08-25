@@ -33,7 +33,7 @@ export class EditAdmintypeComponent implements OnInit {
     this.admintypeService.edit(this.model.Id, admintypeCreatDto)
     .subscribe(() => {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: 'Your Admin Type has been Updated',
         showConfirmButton: false,

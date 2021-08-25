@@ -22,7 +22,7 @@ export class CreateAdmintypeComponent implements OnInit {
   saveChanges(genreCreationDTO: admintypeCreatDto){
     this.admintypeservice.create(genreCreationDTO).subscribe(() => {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: 'Your Admin Type has been saved',
         showConfirmButton: false,

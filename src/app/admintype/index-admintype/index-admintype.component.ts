@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { adminTypeDto } from '../admintype.model';
 import { AdmintypeService } from '../admintype.service';
 
@@ -27,6 +28,13 @@ export class IndexAdmintypeComponent implements OnInit {
   delete(id: number){
     this.admintypeService.delete(id)
     .subscribe(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your Admin Type has been Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.loadAdminType();
     });
   }
