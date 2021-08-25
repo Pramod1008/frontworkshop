@@ -1,7 +1,12 @@
 
 <h2>Admin Types</h2>
 
-<button mat-flat-button color="primary" routerLink="/admintype/create"><mat-icon>add_circle_outline</mat-icon> Create new</button>
+<button mat-flat-button color="primary" routerLink="/admintype/create"
+matTooltip="Create Admin type"
+matTooltipPosition="below" >
+    <mat-icon>add_circle_outline</mat-icon> 
+    Create new
+</button>
 
 <app-generic-list [list]="admintype">
     <ng-container content>
@@ -20,10 +25,13 @@
                 <td mat-cell *matCellDef="let element">
                     <a [routerLink]="['/admintype/edit/',element.Id]" 
                     mat-flat-button color="primary"
+                    matTooltip="Edit Admin type"
+                    matTooltipPosition="left" 
                    > 
                     <mat-icon>edit</mat-icon>
                 </a>
-                    <button mat-flat-button color="warn" 
+                    <button mat-flat-button color="warn"  matTooltip="Delete Admin type"
+                    matTooltipPosition="right" 
                     [swal]="{
                         title: 'Confirmation',
                         text: 'Are you sure that you want to delete the record?',
