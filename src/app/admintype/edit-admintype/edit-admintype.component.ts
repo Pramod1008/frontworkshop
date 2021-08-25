@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { alertError, alertSuccess } from '@app/utilities/sweetalert';
 import { parseWebAPIErrors } from '@app/utilities/utils';
 import Swal from 'sweetalert2';
 import { admintypeCreatDto, adminTypeDto } from '../admintype.model';
@@ -32,14 +33,11 @@ export class EditAdmintypeComponent implements OnInit {
    
     this.admintypeService.edit(this.model.Id, admintypeCreatDto)
     .subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Your Admin Type has been Updated',
-        showConfirmButton: false,
-        timer: 1500
-      })
+     alertSuccess('Your Admin Type has been Updated');
       this.router.navigate(["/admintype"]);
-    });
+    }, error =>{ this.errors = parseWebAPIErrors(error);
+      alertError(this.errors.toString());
+  });
+    
   }
 }

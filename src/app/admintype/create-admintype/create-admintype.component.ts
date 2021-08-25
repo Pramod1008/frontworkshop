@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { admintypeCreatDto } from '@app/admintype/admintype.model';
+import { alertError, alertSuccess } from '@app/utilities/sweetalert';
 import { parseWebAPIErrors } from '@app/utilities/utils';
 import Swal from 'sweetalert2';
 import { AdmintypeService } from '../admintype.service';
@@ -21,15 +22,11 @@ export class CreateAdmintypeComponent implements OnInit {
 
   saveChanges(genreCreationDTO: admintypeCreatDto){
     this.admintypeservice.create(genreCreationDTO).subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Your Admin Type has been saved',
-        showConfirmButton: false,
-        timer: 1500
-      })
+     alertSuccess("Your Admin Type has been saved");
       this.router.navigate(['/admintype']);
-    }, error => this.errors = parseWebAPIErrors(error));
+    }, error =>{ this.errors = parseWebAPIErrors(error);
+      alertError(this.errors.toString());
+  });
 
   }
 }

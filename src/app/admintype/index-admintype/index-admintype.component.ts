@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { alertError, alertSuccess } from '@app/utilities/sweetalert';
+import { parseWebAPIErrors } from '@app/utilities/utils';
 import Swal from 'sweetalert2';
 import { adminTypeDto } from '../admintype.model';
 import { AdmintypeService } from '../admintype.service';
@@ -10,6 +12,7 @@ import { AdmintypeService } from '../admintype.service';
 })
 export class IndexAdmintypeComponent implements OnInit {
   
+  errors: string[] = [];
   admintype: adminTypeDto[];
 
   columnsToDisplay = ['TypeName','IsActive', 'actions'];
@@ -28,14 +31,11 @@ export class IndexAdmintypeComponent implements OnInit {
   delete(id: number){
     this.admintypeService.delete(id)
     .subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Your Admin Type has been Deleted Successfully',
-        showConfirmButton: false,
-        timer: 1500
-      })
+      alertSuccess("Your Admin Type has been Deleted Successfully");
       this.loadAdminType();
+    }, error =>{ this.errors = parseWebAPIErrors(error);
+        alertError(this.errors.toString());
     });
   }
 }
+  
