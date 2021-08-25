@@ -1,0 +1,43 @@
+
+<h2>Admin Types</h2>
+
+<button mat-flat-button color="primary" routerLink="/admintype/create"><mat-icon>add_circle_outline</mat-icon> Create new</button>
+
+<app-generic-list [list]="admintype">
+    <ng-container content>
+        <table mat-table [dataSource]="admintype" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="TypeName">
+                <th mat-header-cell *matHeaderCellDef>Type Name</th>
+                <td mat-cell *matCellDef="let element">{{element.TypeName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="IsActive">
+                <th mat-header-cell *matHeaderCellDef>IsActive</th>
+                <td mat-cell *matCellDef="let element">{{element.IsActive}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/admintype/edit/',element.Id]" 
+                    mat-flat-button color="primary"
+                   > 
+                    <mat-icon>edit</mat-icon>
+                </a>
+                    <button mat-flat-button color="warn" 
+                    [swal]="{
+                        title: 'Confirmation',
+                        text: 'Are you sure that you want to delete the record?',
+                        showCancelButton: true
+                    }"
+                    (confirm)="delete(element.Id)">
+                    <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay"></tr>
+
+        </table>
+    </ng-container>
+</app-generic-list>

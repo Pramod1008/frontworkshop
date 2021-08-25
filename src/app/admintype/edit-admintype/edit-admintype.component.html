@@ -1,0 +1,7 @@
+<h2>Edit Admin Type</h2>
+
+<app-display-errors [errors]="errors"></app-display-errors>
+<app-form-admintype *ngIf="model" [model]="model" 
+(onSaveChanges)="saveChanges($event)"></app-form-admintype>
+
+<mat-spinner *ngIf="!model"></mat-spinner>
