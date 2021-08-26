@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alertError, alertSuccess } from '@app/utilities/sweetalert';
 import { parseWebAPIErrors } from '@app/utilities/utils';
-import Swal from 'sweetalert2';
 import { admintypeCreatDto, adminTypeDto } from '../admintype.model';
 import { AdmintypeService } from '../admintype.service';
 

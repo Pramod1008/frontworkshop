@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { admintypeCreatDto } from '@app/admintype/admintype.model';
 import { alertError, alertSuccess } from '@app/utilities/sweetalert';
 import { parseWebAPIErrors } from '@app/utilities/utils';
-import Swal from 'sweetalert2';
 import { AdmintypeService } from '../admintype.service';
 
 @Component({
